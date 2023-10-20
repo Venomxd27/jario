@@ -15,14 +15,29 @@ public class Window {
     private static Window window = null;
     private long glfwWindow;
 
-    private float r =1,b=1,a =1 , g=1;
+    public float r =1,b=1,a =1 , g=1;
     private boolean fadetoblack = false;
+    private static int currentsceneIndex = -1;
+    private static Scene currentscene;
     private Window() {
         this.width = 1920;
         this.height = 1080;
         this.title = "Mario";
     }
-
+    public static void changescene(int newScene) {
+        switch(newScene) {
+            case 0:
+                currentscene = new LevelEditorScene();
+                //currentscene.init()
+                break;
+            case 1:
+                currentscene = new LevelScene();
+                //currentscene.init();
+                break;
+            default:
+                assert false: "Unknown scene '" + newScene + "'";
+        }
+    }
     public static Window get() {
         if(Window.window == null) {
             Window.window = new Window();
@@ -81,10 +96,12 @@ public class Window {
 
         //bindings available for use
         GL.createCapabilities();
+        Window.changescene(0);
     }
     public void loop() {
         float begintime = Time.get_time();
-        float endtime  = Time.get_time();
+        float endtime ;
+        float dt = -1.0f;
     while(!glfwWindowShouldClose(glfwWindow)) {
         //poll events
         glfwPollEvents();
@@ -92,19 +109,13 @@ public class Window {
         glClearColor(r,g,b,a);
         glClear(GL_COLOR_BUFFER_BIT);  //
         // flush all our colors to screen
-        if(fadetoblack) {
-            r = Math.max(r - 0.01f,0);
-            g = Math.max(g - 0.01f,0);
-            b = Math.max(b - 0.01f , 0);
-        }
-        if(KeyListener.keyPresses(GLFW_KEY_SPACE)) {
-            fadetoblack = true;
-            System.out.println("yeah ");
-        }
 
+        if(dt > 0) {
+            currentscene.update(dt);
+        }
         glfwSwapBuffers(glfwWindow);
         endtime = Time.get_time();
-        float dt = endtime - begintime;
+        dt = endtime - begintime;
         begintime = endtime;
     }
     }
