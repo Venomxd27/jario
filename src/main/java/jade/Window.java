@@ -9,6 +9,7 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
+
 public class Window {
     private int width , height;
     private String title;
@@ -28,11 +29,11 @@ public class Window {
         switch(newScene) {
             case 0:
                 currentscene = new LevelEditorScene();
-                //currentscene.init()
+                currentscene.init();
                 break;
             case 1:
                 currentscene = new LevelScene();
-                //currentscene.init();
+                currentscene.init();
                 break;
             default:
                 assert false: "Unknown scene '" + newScene + "'";

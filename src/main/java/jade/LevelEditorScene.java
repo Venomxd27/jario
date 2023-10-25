@@ -1,27 +1,47 @@
 package jade;
 
-import java.awt.event.KeyEvent;
+
+import javax.swing.plaf.synth.SynthTableHeaderUI;
+import static org.lwjgl.opengl;
 
 public class LevelEditorScene extends Scene {
+    private String vertexShaderSrc ="#version 330 core\n" +
+            "layout (location=0) in vec3 aPos;\n" +
+            "layout (location=1) in vec4 aColor;\n" +
+            "\n" +
+            "out vec4 fColor;\n" +
+            "\n" +
+            "void main() {\n" +
+            "    fColor =  aColor;\n" +
+            "    gl_Position = vec4(aPos , 1.0);\n" +
+            "}";
+    private String fragmentShaderSrc = "#version 330 core\n" +
+            "\n" +
+            "in vec4 fColor;\n" +
+            "out vec4 color;\n" +
+            "\n" +
+            "void main() {\n" +
+            "    color = fColor;\n" +
+            "}";
+    // Compile and link shaders
+
+    //first load and compile the vertex
+    private int vertexID, fragmentID, shaderProgram;
     public LevelEditorScene() {
-        System.out.println("Initiated level editor scene");
+
     }
-    private static boolean changingscene = false;
-    private static float timetochangescene = 2.0f;
+    @Override
+    public void init() {
+         // Compile and link shaders
+
+        // first load and compile the vertex
+        vertexID = gLCreateShader(GL_VERTEX_SHADER);
+        //pass the shader source to the gpu
+        glShaderSource(vertexID , vertexShaderSrc);
+    }
     @Override
     public void update(float dt) {
-        if(!changingscene && KeyListener.keyPresses(KeyEvent.VK_SPACE)) {
-            changingscene = true;
-        }
-        if(changingscene && timetochangescene > 0) {
-            timetochangescene -= dt;
-            Window.get().r -= dt * 5.0f;
-            Window.get().g -= dt* 5.0f;
-            Window.get().b -= dt*5.0f;
-        }
-        else if(changingscene) {
-        Window.changescene(1);
-        }
+
     }
 
 }
