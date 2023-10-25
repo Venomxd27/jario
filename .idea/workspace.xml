@@ -4,8 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="142597e3-3a7d-4d67-9745-f3bcacec0f2c" name="Changes" comment="">
+    <list default="true" id="142597e3-3a7d-4d67-9745-f3bcacec0f2c" name="Changes" comment="Level editor scene updated">
+      <change afterPath="$PROJECT_DIR$/.gradle/8.0/checksums/checksums.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/dependencies-accessors.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/8.0/dependencies-accessors/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/8.0/fileChanges/last-build.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/8.0/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/groovy/main/org/example/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/groovy/main/org/example/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jade/KeyListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jade/KeyListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jade/MouseListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jade/MouseListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jade/Scene.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jade/Scene.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/jade/Window.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/jade/Window.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/util/Time.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/util/Time.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jade/LevelEditorScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jade/LevelEditorScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/jade/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/jade/Window.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +81,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "Merging main",
     "last_opened_file_path": "/run/media/archlinux_op/79e5820f-41d4-4e5e-8fdc-76f89e8f4d82/sem3/oop_project/mario/mario_f1",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
@@ -70,6 +98,15 @@
       <option name="presentableId" value="Default" />
       <updated>1697476208935</updated>
     </task>
+    <task id="LOCAL-00001" summary="Level editor scene updated">
+      <option name="closed" value="true" />
+      <created>1698248033191</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1698248033191</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -82,6 +119,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Level editor scene updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Level editor scene updated" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

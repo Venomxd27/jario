@@ -26,17 +26,18 @@ public class Window {
         this.title = "Mario";
     }
     public static void changescene(int newScene) {
-        switch(newScene) {
-            case 0:
+        switch (newScene) {
+            case 0 -> {
                 currentscene = new LevelEditorScene();
                 currentscene.init();
-                break;
-            case 1:
+            }
+            case 1 -> {
                 currentscene = new LevelScene();
                 currentscene.init();
-                break;
-            default:
-                assert false: "Unknown scene '" + newScene + "'";
+            }
+            default -> {
+                assert false : "Unknown scene '" + newScene + "'";
+            }
         }
     }
     public static Window get() {

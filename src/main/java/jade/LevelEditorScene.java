@@ -2,7 +2,7 @@ package jade;
 
 
 import javax.swing.plaf.synth.SynthTableHeaderUI;
-import static org.lwjgl.opengl;
+
 
 public class LevelEditorScene extends Scene {
     private String vertexShaderSrc ="#version 330 core\n" +
@@ -32,12 +32,7 @@ public class LevelEditorScene extends Scene {
     }
     @Override
     public void init() {
-         // Compile and link shaders
-
-        // first load and compile the vertex
-        vertexID = gLCreateShader(GL_VERTEX_SHADER);
-        //pass the shader source to the gpu
-        glShaderSource(vertexID , vertexShaderSrc);
+    System.out.println("Check");
     }
     @Override
     public void update(float dt) {
