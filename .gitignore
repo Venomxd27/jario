@@ -45,3 +45,6 @@ bin/
 gradle/
 build/
 .gradle/
+
+gradlew
+gradlew.bat
