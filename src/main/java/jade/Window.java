@@ -17,8 +17,6 @@ public class Window {
     private long glfwWindow;
 
     public float r =1,b=1,a =1 , g=1;
-    private boolean fadetoblack = false;
-    private static int currentsceneIndex = -1;
     private static Scene currentscene;
     private Window() {
         this.width = 1920;
