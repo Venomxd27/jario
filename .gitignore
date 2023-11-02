@@ -42,6 +42,5 @@ bin/
 .DS_Store
 
 .idea/
-gradle/
 build/
 .gradle/
