@@ -4,7 +4,7 @@ import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
 import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 
 public class MouseListener {
-    public static MouseListener current;
+    private static MouseListener instance;
     private double scrollX, scrollY;
     private double xPos, yPos, xLast, yLast;
     private final boolean[] mouseButtonPressed = new boolean[3];
@@ -15,28 +15,29 @@ public class MouseListener {
         this.yPos = 0.0;
         this.xLast = 0.0;
         this.yLast = 0.0;
-
     }
 
     public static MouseListener get() {
-        if(MouseListener.current == null) {
-            MouseListener.current = new MouseListener();
-        }
-        return MouseListener.current;
+        if(MouseListener.instance == null)
+            MouseListener.instance = new MouseListener();
+        return MouseListener.instance;
     }
 
-    // mouse positioning
-    public static void mouse_position_call(long window, double xPos, double yPos) {
+    public static void mousePositionCallback(long window, double xPos, double yPos) {
         get().xLast = get().xPos;
         get().yLast = get().yPos;
         get().xPos = xPos;
         get().yPos = yPos;
-        get().isDragging = get().mouseButtonPressed[0] || get().mouseButtonPressed[1] || get().mouseButtonPressed[2];
-        // drag kar rahe to kaise pata chalega , ek to mouse clicked hai aur move kar rahe hai to usko drag kar keh sakte hai na
+        for (int i = 0; i < get().mouseButtonPressed.length; i++) {
+            get().isDragging = get().isDragging || get().mouseButtonPressed[i];
+        }
     }
 
-    // mouse button operations
     public static void mouseButtonCallback(long window, int button, int action, int mods) {
+        if (button >= get().mouseButtonPressed.length) {
+            System.err.println("INFO: Unknown mouse button: " + button);
+            return;
+        }
         if (GLFW_PRESS == action) {
             get().mouseButtonPressed[button] = true;
         }
@@ -46,9 +47,9 @@ public class MouseListener {
         }
     }
 
-    public static void mouseScroll(long window, double xScroll, double yScroll) {
-        get().scrollX = xScroll;
-        get().scrollY = yScroll;
+    public static void mouseScrollCallback(long window, double xOffset, double yOffset) {
+        get().scrollX = xOffset;
+        get().scrollY = yOffset;
     }
 
     public static void endFrame() {
@@ -86,13 +87,9 @@ public class MouseListener {
         return get().isDragging;
    }
 
-   public static boolean mouseButtonPressed(int button) {
-        if(button < get().mouseButtonPressed.length) {
+   public static boolean getMouseButtonPressed(int button) {
+        if(button < get().mouseButtonPressed.length)
             return get().mouseButtonPressed[button];
-        }
-        else {
-            return false;
-        }
+        return false;
    }
-
 }

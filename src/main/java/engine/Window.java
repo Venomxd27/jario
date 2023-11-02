@@ -16,13 +16,14 @@ public class Window {
     private static Window window = null;
     private long glfwWindow;
 
-    public float r =1,b=1,a =1 , g=1;
+    public float r = 1, b = 1, a = 1, g = 1;
     private static Scene currentscene;
     private Window() {
         this.width = 1920;
         this.height = 1080;
         this.title = "Mario";
     }
+
     public static void changeScene(int newScene) {
         switch (newScene) {
             case 0 -> {
@@ -49,11 +50,11 @@ public class Window {
         init();
         loop();
 
-        //Free the memory
+        // Free the memory
         glfwFreeCallbacks(glfwWindow);
         glfwDestroyWindow(glfwWindow);
 
-        //terminate glfw window
+        // terminate glfw window
         glfwTerminate();
         glfwSetErrorCallback(null).free();
     }
@@ -79,9 +80,9 @@ public class Window {
             throw new IllegalStateException("Unable to create glfw window");
         }
 
-        glfwSetCursorPosCallback(glfwWindow , MouseListener::mouse_position_call);
+        glfwSetCursorPosCallback(glfwWindow , MouseListener::mousePositionCallback);
         glfwSetMouseButtonCallback(glfwWindow , MouseListener::mouseButtonCallback);
-        glfwSetScrollCallback(glfwWindow , MouseListener::mouseScroll);
+        glfwSetScrollCallback(glfwWindow , MouseListener::mouseScrollCallback);
 
         // keyListener
         glfwSetKeyCallback(glfwWindow , KeyListener::keyCallback);
