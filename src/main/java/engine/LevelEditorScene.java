@@ -13,7 +13,7 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 public class LevelEditorScene extends Scene {
     // Compile and link shaders
     // first load and compile the vertex
-    private int vertexID, fragmentID, shaderProgram, vaoID, vboID, eboID;
+    private int vaoID, vboID, eboID;
 
     private float[] vertexArray = {
         // position          // color
