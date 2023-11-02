@@ -10,27 +10,29 @@ import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 public class LevelEditorScene extends Scene {
-    private String vertexShaderSrc ="#version 330 core\n" +
-            "layout (location=0) in vec3 aPos;\n" +
-            "layout (location=1) in vec4 aColor;\n" +
-            "\n" +
-            "out vec4 fColor;\n" +
-            "\n" +
-            "void main() {\n" +
-            "    fColor =  aColor;\n" +
-            "    gl_Position = vec4(aPos , 1.0);\n" +
-            "}";
-    private String fragmentShaderSrc = "#version 330 core\n" +
-            "\n" +
-            "in vec4 fColor;\n" +
-            "out vec4 color;\n" +
-            "\n" +
-            "void main() {\n" +
-            "    color = fColor;\n" +
-            "}";
-    // Compile and link shaders
+    private String vertexShaderSrc = """
+            #version 330 core
+            layout (location=0) in vec3 aPos;
+            layout (location=1) in vec4 aColor;
 
-    //first load and compile the vertex
+            out vec4 fColor;
+
+            void main() {
+                fColor =  aColor;
+                gl_Position = vec4(aPos , 1.0);
+            }""";
+    private String fragmentShaderSrc = """
+            #version 330 core
+
+            in vec4 fColor;
+            out vec4 color;
+
+            void main() {
+                color = fColor;
+            }""";
+
+    // Compile and link shaders
+    // first load and compile the vertex
     private int vertexID, fragmentID, shaderProgram, vaoID, vboID, eboID;
 
     private float[] vertexArray = {
@@ -40,22 +42,25 @@ public class LevelEditorScene extends Scene {
             0.5f, 0.5f, 0.0f,    0.0f, 0.0f, 1.0f, 1.0f, //Top Right
             -0.5f, -0.5f, 0.0f,  1.0f, 1.0f, 0.0f, 1.0f, //Bottom Left
     };
+
     private int[] elementArray = {
             2, 1, 0, //Top Right Triangle
             0, 1, 3, //Bottom Left Triangle
     };
+
     public LevelEditorScene() {
 
     }
+
     @Override
     public void init() {
         vertexID = glCreateShader(GL_VERTEX_SHADER);
 
-        //Passing the shader source to the GPU
+        // Passing the shader source to the GPU
         glShaderSource(vertexID, vertexShaderSrc);
         glCompileShader(vertexID);
 
-        //Checking for errors
+        // Checking for errors
         int success = glGetShaderi(vertexID, GL_COMPILE_STATUS);
         if (success == GL_FALSE) {
             int len = glGetShaderi(vertexID, GL_INFO_LOG_LENGTH);
@@ -65,11 +70,11 @@ public class LevelEditorScene extends Scene {
         }
         fragmentID = glCreateShader(GL_FRAGMENT_SHADER);
 
-        //Passing the shader source to the GPU
+        // Passing the shader source to the GPU
         glShaderSource(fragmentID, fragmentShaderSrc);
         glCompileShader(fragmentID);
 
-        //Checking for errors
+        // Checking for errors
         success = glGetShaderi(fragmentID, GL_COMPILE_STATUS);
         if (success == GL_FALSE){
             int len = glGetShaderi(fragmentID, GL_INFO_LOG_LENGTH);
@@ -105,7 +110,7 @@ public class LevelEditorScene extends Scene {
         glBindBuffer(GL_ARRAY_BUFFER, vboID);
         glBufferData(GL_ARRAY_BUFFER, vertexBuffer, GL_STATIC_DRAW);
 
-        //Creating indices Buffer
+        // Creating indices Buffer
         IntBuffer elementBuffer = BufferUtils.createIntBuffer(elementArray.length);
         elementBuffer.put(elementArray).flip();
 
@@ -113,7 +118,7 @@ public class LevelEditorScene extends Scene {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, eboID);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, elementBuffer, GL_STATIC_DRAW);
 
-        //Adding vertex attributes
+        // Adding vertex attributes
         int posSize = 3, colorSize = 4, floatSizeBytes = 4;
         int vertexSizeBytes = (posSize + colorSize) * floatSizeBytes;
         glVertexAttribPointer(0, posSize, GL_FLOAT, false, vertexSizeBytes, 0);
@@ -123,27 +128,26 @@ public class LevelEditorScene extends Scene {
         glEnableVertexAttribArray(1);
 
     }
+
     @Override
     public void update(float dt) {
-        //Binding shader
+        // Binding shader
         glUseProgram(shaderProgram);
 
-        //Binding VAO
+        // Binding VAO
         glBindVertexArray(vaoID);
 
-        //Enabling vertex attribute pointers
+        // Enabling vertex attribute pointers
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
 
         glDrawElements(GL_TRIANGLES, elementArray.length, GL_UNSIGNED_INT, 0);
 
-        //Unbinding everything
+        // Unbinding everything
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
 
         glBindVertexArray(0);
-
         glUseProgram(0);
     }
-
 }

@@ -12,16 +12,15 @@ public class KeyListener {
         }
         return KeyListener.instance;
     }
-    public static void key_callback(long window, int key, int scancode, int action, int mods)
-    {
-        if(action == GLFW_PRESS) {
-        get().keyPressed[key] = true;
-        }
-        else if(action == GLFW_RELEASE) {
+
+    public static void keyCallback(long window, int key, int scanCode, int action, int mods) {
+        if (action == GLFW_PRESS) {
+            get().keyPressed[key] = true;
+        } else if (action == GLFW_RELEASE) {
             get().keyPressed[key] = false;
         }
     }
     public static boolean keyPresses(int keyCode) {
-            return get().keyPressed[keyCode];
+        return get().keyPressed[keyCode];
     }
 }

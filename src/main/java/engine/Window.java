@@ -80,11 +80,11 @@ public class Window {
         }
 
         glfwSetCursorPosCallback(glfwWindow , MouseListener::mouse_position_call);
-        glfwSetMouseButtonCallback(glfwWindow , MouseListener::mousebuttoncallback);
-        glfwSetScrollCallback(glfwWindow , MouseListener::mousescroll);
+        glfwSetMouseButtonCallback(glfwWindow , MouseListener::mouseButtonCallback);
+        glfwSetScrollCallback(glfwWindow , MouseListener::mouseScroll);
 
         // keyListener
-        glfwSetKeyCallback(glfwWindow , KeyListener::key_callback);
+        glfwSetKeyCallback(glfwWindow , KeyListener::keyCallback);
 
         // making opengl context current (basically current focus window pe kaam hai)
         glfwMakeContextCurrent(glfwWindow);
@@ -100,7 +100,7 @@ public class Window {
     }
 
     public void loop() {
-        float beginTime = Time.get_time();
+        float beginTime = Time.getTime();
         float endTime;
         float dt = -1.0f;
 
@@ -115,7 +115,7 @@ public class Window {
                 currentscene.update(dt);
             }
             glfwSwapBuffers(glfwWindow);
-            endTime = Time.get_time();
+            endTime = Time.getTime();
             dt = endTime - beginTime;
             beginTime = endTime;
         }
