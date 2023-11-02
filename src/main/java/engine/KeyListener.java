@@ -1,10 +1,9 @@
-package jade;
+package engine;
 
-import static java.awt.SystemColor.window;
 import static org.lwjgl.glfw.GLFW.*;
 
 public class KeyListener {
-    private boolean keyPressed[] = new boolean[350];
+    private final boolean[] keyPressed = new boolean[350];
     public static KeyListener instance;
 
     public static KeyListener get() {
