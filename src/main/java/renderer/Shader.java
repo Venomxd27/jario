@@ -28,12 +28,12 @@ public class Shader {
             String source = new String(Files.readAllBytes(Paths.get(filePath)));
             String[] sources = source.split("(#type)( )+([a-zA-Z]+)");
 
-            System.out.println("INFO: sources: " + Arrays.toString(sources));
-            System.out.println("INFO: source" + source);
+//            System.out.println("INFO: sources: " + Arrays.toString(sources));
+//            System.out.println("INFO: source" + source);
 
             int index = source.indexOf("#type") + 5;
             int eol = source.indexOf("\n", index);
-            System.out.println("INFO: index: " + index + "\neol: " + eol);
+//            System.out.println("INFO: index: " + index + "\neol: " + eol);
             String firstPattern = source.substring(index, eol).trim();
 
             index = source.indexOf("#type", eol) + 5;
@@ -56,8 +56,8 @@ public class Shader {
             assert false : "ERROR: Unable to open shader file: `" + filePath + "`";
         }
 
-        System.out.println("INFO: vertexSource: " + vertexSource);
-        System.out.println("INFO: fragmentSource: " + fragmentSource);
+//        System.out.println("INFO: vertexSource: " + vertexSource);
+//        System.out.println("INFO: fragmentSource: " + fragmentSource);
     }
 
     public void compile() {

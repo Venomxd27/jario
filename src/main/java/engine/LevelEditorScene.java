@@ -1,5 +1,7 @@
 package engine;
 
+import components.FontRenderer;
+import components.SpriteRenderer;
 import org.joml.Vector2f;
 import org.lwjgl.BufferUtils;
 import renderer.Shader;
@@ -35,16 +37,25 @@ public class LevelEditorScene extends Scene {
     private Shader defaultShader;
     private Texture testTexture;
 
+    private GameObject testGameObject;
+    private boolean firstTime = false;
+
     public LevelEditorScene() {
     }
 
     @Override
     public void init() {
+        System.out.println("INFO: testGameObject");
+        this.testGameObject = new GameObject("Test Object");
+        this.testGameObject.addComponent(new SpriteRenderer());
+        this.testGameObject.addComponent(new FontRenderer());
+        this.addGameObjectToScene(this.testGameObject);
+
         this.camera = new Camera(new Vector2f(0, 0));
         defaultShader = new Shader("assets/shaders/defaults.glsl");
         defaultShader.compile();
 
-        this.testTexture = new Texture("assets/images/mario.png");
+        this.testTexture = new Texture("assets/images/mario2.png");
 
         // Generating VAO, VBO and EBO buffer and sending to GPU
         vaoID = glGenVertexArrays();
@@ -84,8 +95,8 @@ public class LevelEditorScene extends Scene {
 
     @Override
     public void update(float dt) {
-        camera.cameraPosition.x -= dt * 25.0f;
-        camera.cameraPosition.y -= dt * 25.0f;
+//        camera.cameraPosition.x -= dt * 25.0f;
+//        camera.cameraPosition.y -= dt * 25.0f;
 
         defaultShader.use();
 
@@ -114,5 +125,17 @@ public class LevelEditorScene extends Scene {
         glBindVertexArray(0);
 
         defaultShader.detach();
+
+        if (!firstTime) {
+            System.out.println("INFO: Creating game object 2");
+            GameObject gameObject2 = new GameObject("GAme test 2");
+            gameObject2.addComponent(new SpriteRenderer());
+            this.addGameObjectToScene(gameObject2);
+            firstTime = true;
+        }
+
+        for (GameObject gameObject : this.gameObjects) {
+            gameObject.update(dt);
+        }
     }
 }

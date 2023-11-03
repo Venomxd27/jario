@@ -35,6 +35,7 @@ public class Window {
             }
         }
         currentScene.init();
+        currentScene.start();
     }
     public static Window get() {
         if(Window.window == null) {
