@@ -3,6 +3,7 @@ package engine;
 import org.joml.Vector2f;
 import org.lwjgl.BufferUtils;
 import renderer.Shader;
+import renderer.Texture;
 import util.Time;
 
 import java.nio.FloatBuffer;
@@ -18,11 +19,11 @@ public class LevelEditorScene extends Scene {
     private int vaoID, vboID, eboID;
 
     private float[] vertexArray = {
-        // position                // color
-        100.5f, 0.5f, 0.0f,        1.0f, 0.0f, 0.0f, 1.0f, // Bottom Right
-        0.5f, 100.5f, 0.0f,        0.0f, 1.0f, 0.0f, 1.0f, // Top Left
-        100.5f, 100.5f, 0.0f,      0.0f, 0.0f, 1.0f, 1.0f, // Top Right
-        0.5f, 0.5f, 0.0f,          1.0f, 1.0f, 0.0f, 1.0f, // Bottom Left
+        // position                // color                    // UV coordinates
+        100.5f, 0.5f, 0.0f,        1.0f, 0.0f, 0.0f, 1.0f,     1, 1, // Bottom Right
+        0.5f, 100.5f, 0.0f,        0.0f, 1.0f, 0.0f, 1.0f,     0, 0, // Top Left
+        100.5f, 100.5f, 0.0f,      0.0f, 0.0f, 1.0f, 1.0f,     1, 0, // Top Right
+        0.5f, 0.5f, 0.0f,          1.0f, 1.0f, 0.0f, 1.0f,     0, 1, // Bottom Left
     };
 
     // IMPORTANT: Must be in counter-clockwise order
@@ -32,6 +33,7 @@ public class LevelEditorScene extends Scene {
     };
 
     private Shader defaultShader;
+    private Texture testTexture;
 
     public LevelEditorScene() {
     }
@@ -41,6 +43,8 @@ public class LevelEditorScene extends Scene {
         this.camera = new Camera(new Vector2f(0, 0));
         defaultShader = new Shader("assets/shaders/defaults.glsl");
         defaultShader.compile();
+
+        this.testTexture = new Texture("assets/images/mario.png");
 
         // Generating VAO, VBO and EBO buffer and sending to GPU
         vaoID = glGenVertexArrays();
@@ -63,13 +67,19 @@ public class LevelEditorScene extends Scene {
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, elementBuffer, GL_STATIC_DRAW);
 
         // Adding vertex attributes
-        int posSize = 3, colorSize = 4, floatSizeBytes = 4;
-        int vertexSizeBytes = (posSize + colorSize) * floatSizeBytes;
+        int posSize = 3;
+        int colorSize = 4;
+        int uvSize = 2;
+
+        int vertexSizeBytes = (posSize + colorSize + uvSize) * Float.BYTES;
         glVertexAttribPointer(0, posSize, GL_FLOAT, false, vertexSizeBytes, 0);
         glEnableVertexAttribArray(0);
 
-        glVertexAttribPointer(1, colorSize, GL_FLOAT, false, vertexSizeBytes, posSize * floatSizeBytes);
+        glVertexAttribPointer(1, colorSize, GL_FLOAT, false, vertexSizeBytes, posSize * Float.BYTES);
         glEnableVertexAttribArray(1);
+
+        glVertexAttribPointer(2, uvSize, GL_FLOAT, false, vertexSizeBytes, (posSize + colorSize) * Float.BYTES);
+        glEnableVertexAttribArray(2);
     }
 
     @Override
@@ -78,6 +88,12 @@ public class LevelEditorScene extends Scene {
         camera.cameraPosition.y -= dt * 25.0f;
 
         defaultShader.use();
+
+        // Upload texture to shader
+        defaultShader.uploadTexture("TEX_SAMPLER", 0);
+        glActiveTexture(GL_TEXTURE0);
+        testTexture.bind();
+
         defaultShader.uploadMat4f("uProjMatrix", camera.getProjectionMatrix());
         defaultShader.uploadMat4f("uViewMatrix", camera.getViewMatrix());
         defaultShader.uploadFloat("uTime", Time.getTime());
