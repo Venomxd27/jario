@@ -1,9 +1,12 @@
 package engine;
 
+import renderer.Renderer;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Scene {
+    Renderer renderer = new Renderer();
 
     protected Camera camera;
     private boolean isRunning = false;
@@ -20,6 +23,7 @@ public abstract class Scene {
     public void start() {
         for (GameObject gameObject : gameObjects) {
             gameObject.start();
+            this.renderer.add(gameObject);
         }
         isRunning = true;
     }
@@ -28,8 +32,12 @@ public abstract class Scene {
         gameObjects.add(gameObject);
         if (isRunning) {
             gameObject.start();
+            this.renderer.add(gameObject);
         }
     }
 
     public abstract void update(float dt);
+    public Camera camera() {
+        return this.camera;
+    }
 }
