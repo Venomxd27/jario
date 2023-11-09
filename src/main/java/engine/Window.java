@@ -2,7 +2,6 @@ package engine;
 
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
-import util.Time;
 
 import java.util.Objects;
 
@@ -37,15 +36,18 @@ public class Window {
         currentScene.init();
         currentScene.start();
     }
+
     public static Window get() {
         if(Window.window == null) {
             Window.window = new Window();
         }
         return Window.window;
     }
+
     public static Scene getScene() {
         return get().currentScene;
     }
+
     public void run() {
         System.out.println("Shit here we go again");
         init();
@@ -102,7 +104,7 @@ public class Window {
     }
 
     public void loop() {
-        float beginTime = Time.getTime();
+        float beginTime = (float)glfwGetTime();
         float endTime;
         float dt = -1.0f;
 
@@ -117,7 +119,7 @@ public class Window {
                 currentScene.update(dt);
 
             glfwSwapBuffers(glfwWindow);
-            endTime = Time.getTime();
+            endTime = (float)glfwGetTime();
             dt = endTime - beginTime;
             beginTime = endTime;
         }
