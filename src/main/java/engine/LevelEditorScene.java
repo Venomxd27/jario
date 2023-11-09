@@ -3,13 +3,17 @@ package engine;
 import components.SpriteRenderer;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
+import renderer.Shader;
+
 
 public class LevelEditorScene extends Scene {
 
-
+    private Shader defaultShader;
     @Override
     public void init() {
         this.camera = new Camera(new Vector2f());
+        defaultShader = new Shader("assets/shaders/default.glsl");
+        defaultShader.compile();
 
         int xOffset = 10;
         int yOffset = 10;
@@ -35,7 +39,7 @@ public class LevelEditorScene extends Scene {
     @Override
     public void update(float dt) {
 
-
+       // System.out.println("FPS: " + (1.0f / dt));
         for (GameObject gameObject : this.gameObjects) {
             gameObject.update(dt);
         }
