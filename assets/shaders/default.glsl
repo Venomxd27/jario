@@ -35,32 +35,30 @@ void main(){
         int id = int(fTexID);
         switch (id) {
             case 0:
-            color = fColor * texture(uTextures[0], fTexCoords);
-            break;
+                color = fColor * texture(uTextures[0], fTexCoords);
+                break;
             case 1:
-            color = fColor * texture(uTextures[1], fTexCoords);
-            break;
+                color = fColor * texture(uTextures[1], fTexCoords);
+                break;
             case 2:
-            color = fColor * texture(uTextures[2], fTexCoords);
-            break;
+                color = fColor * texture(uTextures[2], fTexCoords);
+                break;
             case 3:
-            color = fColor * texture(uTextures[3], fTexCoords);
-            break;
+                color = fColor * texture(uTextures[3], fTexCoords);
+                break;
             case 4:
-            color = fColor * texture(uTextures[4], fTexCoords);
-            break;
+                color = fColor * texture(uTextures[4], fTexCoords);
+                break;
             case 5:
-            color = fColor * texture(uTextures[5], fTexCoords);
-            break;
+                color = fColor * texture(uTextures[5], fTexCoords);
+                break;
             case 6:
-            color = fColor * texture(uTextures[6], fTexCoords);
-            break;
+                color = fColor * texture(uTextures[6], fTexCoords);
+                break;
             case 7:
-            color = fColor * texture(uTextures[7], fTexCoords);
-            break;
+                color = fColor * texture(uTextures[7], fTexCoords);
+                break;
         }
-//        color = fColor * texture(uTextures[id], fTexCoords);
-//        color = fColor * texture(uTextures, vec3(fTexCoords.xy, id));
     }else {
         color  = fColor;
     }
