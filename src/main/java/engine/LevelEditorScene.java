@@ -5,10 +5,11 @@ import components.SpriteRenderer;
 import components.Spritesheet;
 import org.joml.Vector2f;
 import org.joml.Vector4f;
+import renderer.Shader;
+
 import util.AssetPool;
 
 public class LevelEditorScene extends Scene {
-
 
     @Override
     public void init() {
@@ -58,7 +59,7 @@ public class LevelEditorScene extends Scene {
     @Override
     public void update(float dt) {
 
-
+       // System.out.println("FPS: " + (1.0f / dt));
         for (GameObject gameObject : this.gameObjects) {
             gameObject.update(dt);
         }
