@@ -3,6 +3,7 @@ package engine;
 import components.Sprite;
 import components.SpriteRenderer;
 import components.Spritesheet;
+import imgui.*;
 import org.joml.Vector2f;
 
 import util.AssetPool;
@@ -24,6 +25,7 @@ public class LevelEditorScene extends Scene {
                 AssetPool.getTexture("assets/images/blendImage1.png")
         )));
         this.addGameObjectToScene(obj1);
+        this.activeGameObject = obj1;
 
         GameObject obj2 = new GameObject("Object 2", new Transform(new Vector2f(400, 100), new Vector2f(256, 256)), 1);
         obj2.addComponent(new SpriteRenderer(new Sprite(
@@ -48,5 +50,12 @@ public class LevelEditorScene extends Scene {
             gameObject.update(dt);
         }
         this.renderer.render();
+    }
+
+    @Override
+    public void imgui(){
+        ImGui.begin("Test");
+        ImGui.text("Some random test");
+        ImGui.end();
     }
 }

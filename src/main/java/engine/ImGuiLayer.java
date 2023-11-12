@@ -133,26 +133,28 @@ public class ImGuiLayer {
         // Read: https://raw.githubusercontent.com/ocornut/imgui/master/docs/FONTS.txt
 
 //        if (new File("C:/Windows/Fonts/segoeui.ttf").isFile()) {
-//            final ImFontAtlas fontAtlas = io.getFonts();
-//            final ImFontConfig fontConfig = new ImFontConfig(); // Natively allocated object, should be explicitly destroyed
-//
-//            // Glyphs could be added per-font as well as per config used globally like here
-//            fontConfig.setGlyphRanges(fontAtlas.getGlyphRangesDefault());
-//
-//            // Fonts merge example
-//            fontConfig.setPixelSnapH(true);
-//            fontAtlas.addFontFromFileTTF("C:/Windows/Fonts/segoeui.ttf", 32, fontConfig);
-//            fontConfig.destroy(); // After all fonts were added we don't need this config more
+            final ImFontAtlas fontAtlas = io.getFonts();
+            final ImFontConfig fontConfig = new ImFontConfig(); // Natively allocated object, should be explicitly destroyed
+
+            // Glyphs could be added per-font as well as per config used globally like here
+            fontConfig.setGlyphRanges(fontAtlas.getGlyphRangesDefault());
+
+            // Fonts merge example
+            fontConfig.setPixelSnapH(true);
+
+            fontAtlas.addFontFromFileTTF("C:/Windows/Fonts/segoeui.ttf", 32, fontConfig);
+
+            fontConfig.destroy(); // After all fonts were added we don't need this config more
 //        } else if (new File("C:/Windows/Fonts/Cour.ttf").isFile()) {
-//            // Fallback font
-//
+            // Fallback font
+
 //            final ImFontAtlas fontAtlas = io.getFonts();
 //            final ImFontConfig fontConfig = new ImFontConfig(); // Natively allocated object, should be explicitly destroyed
-//
-//            // Glyphs could be added per-font as well as per config used globally like here
+
+            // Glyphs could be added per-font as well as per config used globally like here
 //            fontConfig.setGlyphRanges(fontAtlas.getGlyphRangesDefault());
-//
-//            // Fonts merge example
+
+            // Fonts merge example
 //            fontConfig.setPixelSnapH(true);
 //            fontAtlas.addFontFromFileTTF("C:/Windows/Fonts/Cour.ttf", 32, fontConfig);
 //            fontConfig.destroy(); // After all fonts were added we don't need this config more
@@ -165,10 +167,11 @@ public class ImGuiLayer {
         imGuiGl3.init("#version 330 core");
     }
 
-    public void update(float dt) {
+    public void update(float dt,Scene currentScene) {
         startFrame(dt);
 
         ImGui.newFrame();
+        currentScene.sceneImgui();
         ImGui.showDemoWindow();
         ImGui.render();
 
