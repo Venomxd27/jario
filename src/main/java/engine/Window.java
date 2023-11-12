@@ -34,6 +34,7 @@ public class Window {
                 assert false : "Unknown scene '" + newScene + "'";
             }
         }
+        currentScene.load();
         currentScene.init();
         currentScene.start();
     }
@@ -119,7 +120,6 @@ public class Window {
         float endTime;
         float dt = -1.0f;
 
-        currentScene.load();
         while(!glfwWindowShouldClose(glfwWindow)) {
             //poll events
             glfwPollEvents();
