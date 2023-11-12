@@ -17,6 +17,8 @@ dependencies {
     project.ext.imguiVersion = '1.86.11'
 
     dependencies {
+        // GSON
+        implementation 'com.google.code.gson:gson:2.10.1'
 
         // ImGUI stuff
         implementation "io.github.spair:imgui-java-app:$imguiVersion"

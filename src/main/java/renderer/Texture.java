@@ -13,7 +13,11 @@ public class Texture {
     private int texId;
     private int width, height;
 
-    public Texture(String filePath) {
+//    public Texture(String filePath) {
+//
+//    }
+
+    public void init(String filePath) {
         this.filePath = filePath;
 
         // Generate texture on GPU
@@ -44,9 +48,9 @@ public class Texture {
             assert channels.get(0) == 3 || channels.get(0) == 4 : "ERROR: The image file `" + filePath + "` is not RGB or RGBA";
             int channel = channels.get(0) == 4 ? GL_RGBA : GL_RGB;
             glTexImage2D(
-                GL_TEXTURE_2D, 0, channel,
-                width.get(0), height.get(0), 0,
-                channel, GL_UNSIGNED_BYTE, image
+                    GL_TEXTURE_2D, 0, channel,
+                    width.get(0), height.get(0), 0,
+                    channel, GL_UNSIGNED_BYTE, image
             );
         } else {
             assert false : "ERROR: Unable to load image: " + filePath;

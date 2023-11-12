@@ -9,23 +9,23 @@ import renderer.Texture;
 
 public class SpriteRenderer extends Component {
 
-    private Vector4f color;
-    public Sprite sprite;
+    private Vector4f color = new Vector4f(1,1,1,1);
+    public Sprite sprite = new Sprite();
 
-    private Transform lastTransform;
-    private boolean isFlag = false;
+    private transient Transform lastTransform;
+    private transient boolean isFlag = false;
 
-    public SpriteRenderer(Vector4f color) {
-        this.color = color;
-        this.sprite = new Sprite(null);
-        this.isFlag = true;
-    }
-
-    public SpriteRenderer(Sprite sprite) {
-        this.sprite = sprite;
-        this.color = new Vector4f(1,1,1,1);
-        this.isFlag = true;
-    }
+//    public SpriteRenderer(Vector4f color) {
+//        this.color = color;
+//        this.sprite = new Sprite(null);
+//        this.isFlag = true;
+//    }
+//
+//    public SpriteRenderer(Sprite sprite) {
+//        this.sprite = sprite;
+//        this.color = new Vector4f(1,1,1,1);
+//        this.isFlag = true;
+//    }
 
     @Override
     public void start() {
