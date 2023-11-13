@@ -5,16 +5,9 @@ import imgui.callback.ImStrConsumer;
 import imgui.callback.ImStrSupplier;
 import imgui.flag.*;
 import imgui.gl3.ImGuiImplGl3;
-import imgui.glfw.ImGuiImplGlfw;
-import imgui.type.ImBoolean;
-
-import java.io.File;
+import scenes.Scene;
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11.GL_COLOR_BUFFER_BIT;
-import static org.lwjgl.opengl.GL30.GL_FRAMEBUFFER;
-import static org.lwjgl.opengl.GL30.glBindFramebuffer;
 
 public class ImGuiLayer {
 
@@ -97,6 +90,9 @@ public class ImGuiLayer {
                 ImGui.setWindowFocus(null);
             }
 
+            if (!io.getWantCaptureMouse()){
+                MouseListener.mouseButtonCallback(w, button, action, mods);
+            }
         });
 
         glfwSetScrollCallback(glfwWindow, (w, xOffset, yOffset) -> {
@@ -167,7 +163,7 @@ public class ImGuiLayer {
         imGuiGl3.init("#version 330 core");
     }
 
-    public void update(float dt,Scene currentScene) {
+    public void update(float dt, Scene currentScene) {
         startFrame(dt);
 
         ImGui.newFrame();

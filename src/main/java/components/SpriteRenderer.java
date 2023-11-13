@@ -1,6 +1,5 @@
 package components;
 
-import engine.Component;
 import engine.Transform;
 import imgui.internal.*;
 import org.joml.Vector2f;
