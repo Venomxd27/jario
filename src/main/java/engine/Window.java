@@ -51,7 +51,7 @@ public class Window {
     }
 
     public void run() {
-        System.out.println("Shit here we go again");
+        System.out.println("Eureka!!");
         init();
         loop();
 
