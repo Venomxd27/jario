@@ -1,7 +1,5 @@
 # Jario
 
-Jario = Java + Mario
+Simple Game Engine 
 
-## References
 
-- Tutorial: <https://youtu.be/025QFeZfeyM>
