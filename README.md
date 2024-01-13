@@ -1,5 +1,5 @@
 # Jario
 
-Simple Game Engine 
+Simple Game Engine  in Java
 
 
